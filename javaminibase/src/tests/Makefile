@@ -1,5 +1,5 @@
 # modify the paths appropriately
-JDKPATH = /usr/java/jdk1.3.1_02
+JDKPATH = /usr/lib/jvm/java-8-openjdk-amd64
 LIBPATH = .:..
 CLASSPATH = $(LIBPATH)
 BINPATH = $(JDKPATH)/bin
