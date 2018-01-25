@@ -1,14 +1,15 @@
 package bufmgr;
+
 import chainexception.*;
 
 
+public class PageNotReadException extends ChainException {
 
-public class PageNotReadException extends ChainException{
 
-  
-  public PageNotReadException(Exception e, String name)
-  { super(e, name); }
- 
+    public PageNotReadException(Exception e, String name) {
+        super(e, name);
+    }
+
 
 }
 

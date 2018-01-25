@@ -1,10 +1,12 @@
 package bufmgr;
+
 import chainexception.*;
 
-public class ReplacerException extends ChainException{
+public class ReplacerException extends ChainException {
 
-  public ReplacerException(Exception e, String name)
-  { super(e, name); }
- 
+    public ReplacerException(Exception e, String name) {
+        super(e, name);
+    }
+
 }
 
