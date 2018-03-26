@@ -1,0 +1,18 @@
+Tests
+
+Buffer manager
+Test 1 - Tries to allocate new pages. It unpins the first page because the newpage functions pins the first page. Then it dirties each page by pinning the page, adds 99999 to the pid and unpins it (This is to avoid page faults). It checks if the data is consistent with what was written previously again by pinning the page, checking the value and unpinning it. Then it frees all the pages.
+
+Test 2 - Here it tests illegal buffer operations. It tries to pin more pages than there are frames available. It starts off by allocating some pages and pins every page except the last one. Then it tries to pin the last page and fails (Don't understand why though.) It then attempts to free a doubly-pinned page by pinning the first page again. It fails as expected. It then tries to pin a page not in the buffer pool(the last page) and fails as expected (again, why isn't it there?). Frees all the pages.
+
+Test 3 - Here it writes to a few pages, unpins some of them kinda randomly, then reads the pinned pages. It unpins pages whose pids aren't 12 mod 20. It reads the value back again and then unpins the pages (Does it in a wierd way though)
+
+Disk space management
+Test 1 - It tries to do some basic operations. It creates 6 files and allocates one page to each file. Then it allocates 30 pages and writes something to 20 of them. Then it deallocates the rest of the pages.
+
+Test 2 - It build on the work done it test 1. It deletes files 0-3 then checks if files 3-6 still exist. Then it tries to read pages 0-20 and checks if the data is the same as what was written in test 1. 
+
+Test 3 - Here it tries to see if illegal statements fail. First
+
+Test 4 -
+
