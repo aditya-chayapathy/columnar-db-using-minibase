@@ -24,6 +24,7 @@ class ColumnarDriver2 extends TestDriver {
     String expression;
     int bufspace;
     String Accesstype;
+    int cnt = 0;
 
     //private boolean delete = true;
     public ColumnarDriver2(String dBName2, String colfilename2, String projection2, String expression2, int bufspace2, String accesstype2) {
@@ -63,6 +64,7 @@ class ColumnarDriver2 extends TestDriver {
         String remove_dbcmd;
         String remove_cmd = isUnix() ? "/bin/rm -rf " : "cmd /c del /f ";
         boolean _pass = true;
+
         if (Accesstype.equals("FILESCAN")) {
             _pass = test1();
         } else if (Accesstype.equals("COLUMNSCAN")) {
@@ -72,6 +74,7 @@ class ColumnarDriver2 extends TestDriver {
         } else if (Accesstype.equals("BITMAP")) {
             _pass = test3(1);
         }
+        System.out.println(cnt +" tuples selected");
         try {
             SystemDefs.JavabaseBM.flushAllPages();
             SystemDefs.JavabaseDB.closeDB();
@@ -133,6 +136,7 @@ class ColumnarDriver2 extends TestDriver {
                             AttrType indexAttrType = cf.getAttrtypeforcolumn(columnNo);
 
                             short[] targetedCols = new short[temp.length];
+                          //  AttrType[] opattr=new AttrType[temp.length];
                             boolean indexOnly;
                             if (temp.length == 1) {
                                 if (temp[0].equals(expression1[0]))
@@ -144,7 +148,9 @@ class ColumnarDriver2 extends TestDriver {
                             }
                             int index = 0;
                             for (String i : temp) {
-                                targetedCols[index++] = (short) cf.getAttributePosition(i);
+                                targetedCols[index] = (short) cf.getAttributePosition(i);
+                        //        opattr[index]=new AttrType(cf.getAttrsizeforcolumn(targetedCols[index]));
+                                index++;
                             }
                             CondExpr[] expr;
                             if(expression1.length<2){
@@ -195,10 +201,12 @@ class ColumnarDriver2 extends TestDriver {
                                     done = true;
                                     break;
                                 } else {
-                                    count++;
+                                    cnt++;
                                     result.print(atype2);
                                 }
                             }
+                            cis.close();
+                            cf.close();
 
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
@@ -239,6 +247,7 @@ class ColumnarDriver2 extends TestDriver {
                                 indexOnly = false;
                             }
                             int index = 0;
+
                             for (String i : temp) {
                                 targetedCols[index++] = (short) cf.getAttributePosition(i);
                             }
@@ -292,6 +301,8 @@ class ColumnarDriver2 extends TestDriver {
                                     result.print(atype2);
                                 }
                             }
+                            cis.close();
+                            cf.close();
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -333,6 +344,7 @@ class ColumnarDriver2 extends TestDriver {
             short[] s1_sizes=cf.getAttrSizes();
             String[] temp=Projection.split(",");
             int n_out_flds=temp.length;
+            AttrType[] opattr=new AttrType[temp.length];
             String[] expression1=expression.split(" ");
             CondExpr[] expr;
             if(expression1.length<=2){
@@ -382,6 +394,11 @@ class ColumnarDriver2 extends TestDriver {
             FldSpec[] projectionlist=new FldSpec[n_out_flds];
             for(int i=0;i<n_out_flds;i++){
                 projectionlist[i]=new FldSpec(new RelSpec(RelSpec.outer),cf.getAttributePosition (temp[i])+1);
+                try {
+                    opattr[i] = new AttrType(cf.getAttrtypeforcolumn(cf.getAttributePosition(temp[i])).attrType);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             try {
                 ColumnarFileScan fc=new ColumnarFileScan(Colfilename, in1,s1_sizes,len_in1,n_out_flds,projectionlist,expr);
@@ -390,7 +407,8 @@ class ColumnarDriver2 extends TestDriver {
                     try {
                         Tuple result=fc.get_next();
                         if(result!=null){
-                            result.print(in1);
+                            //result.print(opattr);
+                            cnt++;
                         }
                         else{
                             done=true;
@@ -401,6 +419,8 @@ class ColumnarDriver2 extends TestDriver {
                         e.printStackTrace();
                     }
                 }
+                fc.close();
+                cf.close();
             } catch (FileScanException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -409,6 +429,8 @@ class ColumnarDriver2 extends TestDriver {
                 e.printStackTrace();
             } catch (InvalidRelation e) {
                 // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SortException e) {
                 e.printStackTrace();
             }
 
@@ -495,7 +517,10 @@ class ColumnarDriver2 extends TestDriver {
                         break;
                     }
                     result.print(atype2);
+                    cnt++;
                 }
+                ccs.close();
+                cf.close();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

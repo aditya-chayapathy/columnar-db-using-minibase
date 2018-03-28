@@ -118,7 +118,7 @@ class InsertDriver extends TestDriver {
 			//Close the input stream
 			br.close();
 
-
+			int cnt = 1;
 			Columnarfile cf = new Columnarfile(colFilename, numCols , types, sizes, names);
 			for (String s:tuples) {
 				String values[] = s.split("\t");
@@ -147,7 +147,9 @@ class InsertDriver extends TestDriver {
 					}
 				}
 				cf.insertTuple(t.getTupleByteArray());
+				cnt++;
 			}
+			System.out.println(cnt +" tuples inserted");
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

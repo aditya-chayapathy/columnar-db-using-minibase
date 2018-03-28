@@ -137,6 +137,7 @@ public class ColumnarFileScan extends Iterator {
         if (position < 0)
             return null;
 
+        System.out.println(position);
         Projection.Project(tuple1, _in1, Jtuple, perm_mat, nOutFlds);
         return Jtuple;
     }
@@ -173,7 +174,10 @@ public class ColumnarFileScan extends Iterator {
                 }
             }
             if(position == currDeletePos){
-                deletedTuples.get_next();
+                Tuple dtuple = deletedTuples.get_next();
+                if(dtuple == null)
+                    break;
+                currDeletePos = dtuple.getIntFld(1);
                 continue;
             }
 
@@ -182,6 +186,7 @@ public class ColumnarFileScan extends Iterator {
                 return position;
             }
         }
+        return -1;
     }
 
     /**

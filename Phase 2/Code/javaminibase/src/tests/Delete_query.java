@@ -192,6 +192,7 @@ class DeleteDriver extends TestDriver {
                                 cf.purgeAllDeletedTuples();
                             }
                             cis.close();
+                            cf.close();
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -282,6 +283,7 @@ class DeleteDriver extends TestDriver {
                                 cf.purgeAllDeletedTuples();
                             }
                             cis.close();
+                            cf.close();
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -383,6 +385,7 @@ class DeleteDriver extends TestDriver {
                     cf.purgeAllDeletedTuples();
                 }
                 fc.close();
+                cf.close();
             } catch (FileScanException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -490,6 +493,7 @@ class DeleteDriver extends TestDriver {
                     cf.purgeAllDeletedTuples();
                 }
                 ccs.close();
+                cf.close();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

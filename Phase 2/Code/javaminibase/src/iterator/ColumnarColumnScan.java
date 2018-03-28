@@ -165,12 +165,16 @@ public class ColumnarColumnScan extends Iterator {
                     }
                 }
                 if(position == currDeletePos){
-                    deletedTuples.get_next();
+                    Tuple dtuple = deletedTuples.get_next();
+                    if(dtuple == null)
+                        break;
+                    currDeletePos = dtuple.getIntFld(1);
                     continue;
                 }
                 return position;
             }
         }
+        return -1;
     }
 
     /**
