@@ -9,7 +9,7 @@ import global.SystemDefs;
 import heap.Tuple;
 import iterator.*;
 
-public class DeleteInterface {
+public class DeleteQuery {
 
     private static String FILESCAN = "FILE";
     private static String COLUMNSCAN = "COLUMN";
