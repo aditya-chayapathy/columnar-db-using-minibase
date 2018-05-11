@@ -1,0 +1,15 @@
+BATCH INSERT
+
+CREATE INDEX
+
+
+SELECT
+-filescan
+cdb file A,B,C,D "C > 6 ^ D < 5" "" FILE "" A,B,C,D 20
+-columnscan
+cdb file A,B,C,D "D < 5" C COLUMN "C > 6" A,B,C,D 20
+-indexscan
+cdb file A,C,D "" C,D BITMAP,BTREE "(C = 5 v C = 9),D > 5" A,C,D 20
+
+NLJ
+cdb a b a.A,b.A "" "" FILE "" A,C "" A,C "a.C = b.C" 20
