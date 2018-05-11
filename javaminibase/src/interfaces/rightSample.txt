@@ -1,9 +1,0 @@
-C:int	D:char(25)	Y:char(25)
-1	c	K
-2	b	T
-3	c	L
-4	b	H
-5	c	K
-6	b	X
-7	c	L
-8	b	U
