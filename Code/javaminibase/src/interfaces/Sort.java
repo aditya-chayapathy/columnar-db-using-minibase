@@ -14,7 +14,7 @@ import iterator.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SortInterface {
+public class Sort {
 
     private static String FILESCAN = "FILE";
     private static String COLUMNSCAN = "COLUMN";

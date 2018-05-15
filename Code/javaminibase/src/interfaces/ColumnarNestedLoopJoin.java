@@ -9,7 +9,7 @@ import global.SystemDefs;
 import heap.Tuple;
 import iterator.*;
 
-public class ColumnarNestedLoopJoinInterface {
+public class ColumnarNestedLoopJoin {
 
     private static String FILESCAN = "FILE";
     private static String COLUMNSCAN = "COLUMN";

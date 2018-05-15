@@ -9,7 +9,7 @@ import iterator.CondExpr;
 import iterator.FldSpec;
 import iterator.RelSpec;
 
-public class BitmapEquiJoins {
+public class BitmapEquiJoin {
 
     public static void main(String[] args) throws Exception {
         // Query Skeleton: COLUMNDB OUTERFILE INNERFILE OUTERCONST INNERCONST EQUICONST [TARGETCOLUMNS] NUMBUF
