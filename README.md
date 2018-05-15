@@ -21,22 +21,22 @@ Intefaces:
   Usage: java BatchInsert DATAFILENAME COLUMNDBNAME COLUMNARFILENAME NUMCOLUMNS<br />
   Example: java BatchInsert sampledata.txt testColumnDB students 4<br />
   
-- Create Index:
-  Interface: CreateIndex
-  Usage: java CreateIndex COLUMNDBNAME COLUMNARFILENAME COLUMNNAME TYPEOFINDEX
-  Example: java CreateIndex testColumnDB students C BITMAP
+- Create Index:<br />
+  Interface: CreateIndex<br />
+  Usage: java CreateIndex COLUMNDBNAME COLUMNARFILENAME COLUMNNAME TYPEOFINDEX<br />
+  Example: java CreateIndex testColumnDB students C BITMAP<br />
 
-- Select Query:   
-  Interface: SelectQuery
-  Usage: java SelectQuery COLUMNDBNAME COLUMNARFILENAME PROJECTION OTHERCONSTRAINTS COLUMNSCANS SCANTYPES SCANCONSTRAINTS TARGETCOLUMNS NUMBUF SORTMEM
-  Example: java SelectQuery DemoDB DemoFile A,C,D "" C,D BITMAP,BTREE "(C = 5 v C = 9),D >= 5" A,C,D 200 100
+- Select Query:   <br />
+  Interface: SelectQuery<br />
+  Usage: java SelectQuery COLUMNDBNAME COLUMNARFILENAME PROJECTION OTHERCONSTRAINTS COLUMNSCANS SCANTYPES SCANCONSTRAINTS TARGETCOLUMNS NUMBUF SORTMEM<br />
+  Example: java SelectQuery DemoDB DemoFile A,C,D "" C,D BITMAP,BTREE "(C = 5 v C = 9),D >= 5" A,C,D 200 100<br />
 
-- Delete Query:
-  Interface: DeleteQuery
-  Usage: DeleteQuery COLUMNDBNAME COLUMNARFILENAME PROJECTION OTHERCONSTRAINTS COLUMNSCANS SCANTYPES SCANCONSTRAINTS TARGETCOLUMNS NUMBUF SORTMEM
-  Example: java DeleteQuery DemoDB DemoFile A,C,D "" C,D BITMAP,BTREE "(C = 5 v C = 9),D >= 5" A,C,D 200 100 
+- Delete Query:<br />
+  Interface: DeleteQuery<br />
+  Usage: DeleteQuery COLUMNDBNAME COLUMNARFILENAME PROJECTION OTHERCONSTRAINTS COLUMNSCANS SCANTYPES SCANCONSTRAINTS TARGETCOLUMNS NUMBUF SORTMEM<br />
+  Example: java DeleteQuery DemoDB DemoFile A,C,D "" C,D BITMAP,BTREE "(C = 5 v C = 9),D >= 5" A,C,D 200 100 <br />
   
-- Bitmap Equijoin:
-  Interface:
-  Usage: 
-  Example: 
+- Bitmap Equijoin:<br />
+  Interface:<br />
+  Usage: <br />
+  Example: <br />
