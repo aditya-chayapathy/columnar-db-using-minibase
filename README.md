@@ -16,10 +16,10 @@ Type of query expression supported:
   1. CNF
 
 Intefaces:
-- Batch Insert:
-  Interface: BatchInsert
-  Usage: java BatchInsert DATAFILENAME COLUMNDBNAME COLUMNARFILENAME NUMCOLUMNS
-  Example: java BatchInsert sampledata.txt testColumnDB students 4
+- Batch Insert:<br />
+  Interface: BatchInsert<br />
+  Usage: java BatchInsert DATAFILENAME COLUMNDBNAME COLUMNARFILENAME NUMCOLUMNS<br />
+  Example: java BatchInsert sampledata.txt testColumnDB students 4<br />
   
 - Create Index:
   Interface: CreateIndex
